@@ -78,4 +78,11 @@ class CurrencyTest < Minitest::Test
       assert_equal converter.conversion_rates, rates
 
   end
+
+  def test_11_currency_converter_can_create_currency_obj_from_other_obj
+    rates = {USD: 1.00, EUR: 0.74}
+    money_bag = CurrencyConverter.new(rates)
+    assert money_bag.convert(Currency.new(1, :USD),:USD) == Currency.new(1,:USD)
+
+  end
 end
