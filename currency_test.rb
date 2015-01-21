@@ -40,10 +40,13 @@ class CurrencyTest < Minitest::Test
   end
 
   def test_06_currency_types_are_not_same_code
-    assert_raises DifferentCurrencyCodeError do
-      currency1 = Currency.new(100, "USD")
-      currency2 = Currency.new(10, "EUR")
+    currency1 = Currency.new(100, "USD")
+    currency2 = Currency.new(10, "EUR")
+    assert_raises(DifferentCurrencyCodeError) do
       currency1 + currency2
+    end
+    assert_raises(DifferentCurrencyCodeError) do
+      currency1 - currency2
     end
   end
 

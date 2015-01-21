@@ -1,3 +1,5 @@
+class DifferentCurrencyCodeError<StandardError
+end
 
 class Currency
   attr_reader :amount
@@ -16,19 +18,21 @@ class Currency
   end
 
   def +(num)
-    if new_amount = self.amount + num.amount
+    if num.code == self.code
+      new_amount = self.amount + num.amount
       Currency.new(new_amount, self.code)
     else
-      num.code != self.code
+      #num.code != self.code
       raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
 
   def -(num)
-    if new_amount = self.amount - num.amount
+    if num.code == self.code
+      new_amount = self.amount - num.amount
       Currency.new(new_amount, self.code)
     else
-      num.code != self.code
+      #num.code != self.code
       raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
