@@ -37,14 +37,14 @@ class Currency
     end
   end
 
-  def *(num1)
-    new_amount = self.amount.to_i * num1
-    Currency.new(new_amount, self.code)
-  end
-
-  def *(num2)
-    new_amount = self.amount.to_f * num2
-    Currency.new(new_amount, self.code)
+  def *(num)
+    if
+      new_amount = self.amount.to_i * num
+      Currency.new(new_amount, self.code)
+    else
+      new_amount = self.amount.to_f * num
+      Currency.new(new_amount, self.code)
+    end
   end
 
 

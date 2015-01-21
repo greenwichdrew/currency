@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './currency'
+require './currency_converter'
+
 
 class CurrencyTest < Minitest::Test
 
@@ -50,9 +52,30 @@ class CurrencyTest < Minitest::Test
     end
   end
 
-  def test_07_currencty_multiply_Fixnum_or_Float
+  def test_07_currencty_multiply_Fixnum
     currency1 = Currency.new(100, "USD")
-    assert_equal Currency.new(200, "USD"), currency1 * 2
-    assert_equal Currency.new(150.0, "USD"), currency1 * 1.5
+    assert_equal Currency.new(200, "USD"), (currency1 * 2)
+    refute Currency.new(200, "USD") == (currency1 * 3)
+    assert_equal Fixnum, (currency1 * 2).amount.class
+
+  end
+
+  def test_08_currencty_multiply_Float
+    currency1 = Currency.new(100, "USD")
+    assert_equal Currency.new(150, "USD"), (currency1 * 1.5)
+    refute Currency.new(300, "USD") == (currency1 * 3.5)
+    assert_equal Float, (currency1 * 1.5).amount.class
+
+  end
+
+  def test_09_currency_converter_class_exist
+    assert CurrencyConverter
+  end
+
+  def test_10_currency_converter_value_exist
+      rates = {USD: 1.00, EUR: 0.74}
+      converter = CurrencyConverter.new(rates)
+      assert_equal converter.conversion_rates, rates
+
   end
 end
