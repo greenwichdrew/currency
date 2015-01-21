@@ -49,6 +49,7 @@ class CurrencyTest < Minitest::Test
 
   def test_07_currencty_multiply_Fixnum_or_Float
     currency1 = Currency.new(100, "USD")
+    assert_equal Currency.new(200, "USD"), currency1 * 2
     assert_equal Currency.new(150.0, "USD"), currency1 * 1.5
   end
 end

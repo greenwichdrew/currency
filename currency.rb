@@ -16,25 +16,30 @@ class Currency
   end
 
   def +(num)
-    if num.code != self.code
-      raise DifferentCurrencyCodeError,"Two different currencies"
-    else
-      new_amount = self.amount + num.amount
+    if new_amount = self.amount + num.amount
       Currency.new(new_amount, self.code)
+    else
+      num.code != self.code
+      raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
 
   def -(num)
-    if num.code != self.code
-      raise DifferentCurrencyCodeError,"Two different currencies"
-    else
-      new_amount = self.amount - num.amount
+    if new_amount = self.amount - num.amount
       Currency.new(new_amount, self.code)
+    else
+      num.code != self.code
+      raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
 
-  def *(num)
-    new_amount = self.amount.to_f * num
+  def *(num1)
+    new_amount = self.amount.to_i * num1
+    Currency.new(new_amount, self.code)
+  end
+
+  def *(num2)
+    new_amount = self.amount.to_f * num2
     Currency.new(new_amount, self.code)
   end
 
