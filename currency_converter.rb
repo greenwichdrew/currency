@@ -5,6 +5,7 @@ class CurrencyConverter
 
   def initialize(conversion_rates)
     @conversion_rates = conversion_rates
+
   end
 
   def convert(original_currency, new_currency_code)

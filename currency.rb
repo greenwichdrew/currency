@@ -22,7 +22,6 @@ class Currency
       new_amount = self.amount + num.amount
       Currency.new(new_amount, self.code)
     else
-      #num.code != self.code
       raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
@@ -32,7 +31,6 @@ class Currency
       new_amount = self.amount - num.amount
       Currency.new(new_amount, self.code)
     else
-      #num.code != self.code
       raise DifferentCurrencyCodeError,"Two different currencies"
     end
   end
