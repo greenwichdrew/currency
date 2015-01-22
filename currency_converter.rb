@@ -9,8 +9,10 @@ class CurrencyConverter
   end
 
   def convert(original_currency, new_currency_code)
-    new_amount = (original_currency.amount*@conversion_rates[new_currency_code])/@conversion_rates[original_currency.code]
+    new_amount1 = (original_currency.amount*@conversion_rates[new_currency_code])/@conversion_rates[original_currency.code]
+    new_amount2 = (original_currency.amount*@conversion_rates[new_currency_code])
     return Currency.new(new_amount, new_currency_code)
   end
+
 
 end
